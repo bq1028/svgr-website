@@ -23,6 +23,8 @@ app.prepare().then(() => {
 
   server.listen(3000, err => {
     if (err) throw err
+    /* eslint-disable no-console */
     console.log('> Ready on http://localhost:3000')
+    /* eslint-enable no-console */
   })
 })
