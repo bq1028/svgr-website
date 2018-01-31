@@ -15,6 +15,7 @@ module.exports = {
     'no-shadow': 'off',
     'no-nested-ternary': 'off',
     'no-plusplus': 'off',
+    'no-param-reassign': 'off',
 
     'react/jsx-filename-extension': ['error', { extensions: ['.js'] }],
     'react/prop-types': 'off',
