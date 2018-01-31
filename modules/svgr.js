@@ -1,4 +1,12 @@
-async function svgr(code, options) {
+async function svgr(code, options = {}) {
+  if (typeof options.tabWidth !== 'undefined') {
+    options.tabWidth = Number(options.tabWidth)
+  }
+
+  if (typeof options.precision !== 'undefined') {
+    options.precision = Number(options.precision)
+  }
+
   const res = await fetch('/api/svgr', {
     headers: {
       'content-type': 'application/json',
