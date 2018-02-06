@@ -1,7 +1,7 @@
 import React from 'react'
 import { injectGlobal } from 'styled-components'
+import { Box } from 'smooth-ui'
 import Settings from 'components/Settings'
-import Box from 'components/Box'
 import svgr from 'modules/svgr'
 import defaultSvg from 'config/fixtures/defaultSvg'
 import Header from 'components/Header'

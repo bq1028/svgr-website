@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import Box from 'smooth-ui/Box'
 import ChevronLeft from 'react-icons/lib/fa/chevron-left'
-import Box from './Box'
 
 const Container = styled.div`
   display: flex;
@@ -37,7 +37,11 @@ const Marker = styled(ChevronLeft)`
   width: 12px;
   height: 12px;
   transition: transform 300ms;
-  transform: rotate(${props => (props.turned ? -90 : 0)}deg);
+  transform: rotate(0);
+
+  &.opened {
+    transform: rotate(-90deg);
+  }
 `
 
 class SettingGroup extends React.Component {
@@ -51,8 +55,8 @@ class SettingGroup extends React.Component {
       <Container>
         <Title onClick={this.handleClick}>
           <Box alignItems="center">
-            <Box flex="1">{title}</Box>
-            <Marker turned={this.state.opened} />
+            <Box flex>{title}</Box>
+            <Marker className={this.state.opened ? 'opened' : ''} />
           </Box>
         </Title>
         {this.state.opened && <Content>{children}</Content>}

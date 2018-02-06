@@ -26,6 +26,8 @@ module.exports = {
     'import/extensions': 'warning',
 
     'class-methods-use-this': 'off',
+
+    'jsx-a11y/label-has-for': 'off',
   },
   settings: {
     'import/resolver': {
