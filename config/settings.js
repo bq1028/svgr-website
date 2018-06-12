@@ -1,25 +1,15 @@
+const parseObject = value =>
+  value.split(',').reduce((obj, assignment) => {
+    const [left, right] = assignment.split('=')
+    return {
+      ...obj,
+      [left]: right,
+    }
+  }, {})
+
+const parseJson = value => value && JSON.parse(value)
+
 export const settings = [
-  {
-    label: 'SVGO',
-    name: 'svgo',
-    type: 'boolean',
-    group: 'global',
-    default: true,
-  },
-  {
-    label: 'Prettier',
-    name: 'prettier',
-    type: 'boolean',
-    group: 'global',
-    default: true,
-  },
-  {
-    label: 'Expand props',
-    name: 'expandProps',
-    type: 'boolean',
-    group: 'global',
-    default: true,
-  },
   {
     label: 'Icon',
     name: 'icon',
@@ -35,6 +25,13 @@ export const settings = [
     default: false,
   },
   {
+    label: 'Expand props',
+    name: 'expandProps',
+    type: 'boolean',
+    group: 'global',
+    default: true,
+  },
+  {
     label: 'Ref',
     name: 'ref',
     type: 'boolean',
@@ -42,91 +39,61 @@ export const settings = [
     default: false,
   },
   {
-    label: 'Replace attribute value',
+    label: 'Title prop',
+    name: 'titleProp',
+    type: 'boolean',
+    group: 'global',
+    default: false,
+  },
+  {
+    label: 'Replace attributes value',
     name: 'replaceAttrValues',
     placeholder: '#063855=currentColor',
     type: 'string',
     group: 'global',
-    transform: value => value.split(',').map(value => value.split('=')),
+    transform: parseObject,
     default: '',
   },
   {
-    label: 'Title',
-    name: 'title',
+    label: 'SVG attributes',
+    name: 'svgAttributes',
+    placeholder: 'focusable=false',
+    type: 'string',
+    group: 'global',
+    transform: parseObject,
+    default: '',
+  },
+  {
+    label: 'Enable',
+    name: 'svgo',
     type: 'boolean',
     group: 'svgo',
     default: true,
   },
   {
-    label: 'ViewBox',
-    name: 'viewBox',
-    type: 'boolean',
+    label: 'Config',
+    name: 'svgoConfig',
+    placeholder: '{ "plugins": [{ "removeTitle": false }] }',
+    type: 'string',
     group: 'svgo',
-    default: true,
+    default: '{ "plugins": [{ "removeTitle": false }] }',
+    transform: parseJson,
   },
   {
-    label: 'Ids',
-    name: 'ids',
-    type: 'boolean',
-    group: 'svgo',
-    default: false,
-  },
-  {
-    label: 'Precision',
-    name: 'precision',
-    type: 'integer',
-    group: 'svgo',
-    default: 3,
-  },
-  {
-    label: 'Tabs',
-    name: 'useTabs',
-    type: 'boolean',
-    group: 'prettier',
-    default: false,
-  },
-  {
-    label: 'Semicolons',
-    name: 'semi',
+    label: 'Enable',
+    name: 'prettier',
     type: 'boolean',
     group: 'prettier',
     default: true,
   },
   {
-    label: 'Single quotes',
-    name: 'singleQuote',
-    type: 'boolean',
+    label: 'Config',
+    name: 'prettierConfig',
+    placeholder: '{ "semi": false }',
+    type: 'string',
     group: 'prettier',
-    default: false,
-  },
-  {
-    label: 'Bracket spacing',
-    name: 'bracketSpacing',
-    type: 'boolean',
-    group: 'prettier',
-    default: true,
-  },
-  {
-    label: 'JSX Brackets',
-    name: 'jsxBracketSameLine',
-    type: 'boolean',
-    group: 'prettier',
-    default: false,
-  },
-  {
-    label: 'Trailing comma',
-    name: 'trailingComma',
-    type: 'enum',
-    values: ['none', 'es5', 'all'],
-    group: 'prettier',
-    default: 'none',
-  },
-  {
-    label: 'Tab width',
-    name: 'tabWidth',
-    type: 'integer',
-    group: 'prettier',
-    default: 2,
+    default: '{ "semi": false }',
+    transform: parseJson,
   },
 ]
 
